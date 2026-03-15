@@ -9,13 +9,15 @@ public class Main {
     public static void main(String[] args) {
 
         Tricklist list = new Tricklist();
-        SkateTrick[] tricklist1 = list.trickliste1;
+        SkateTrick[] tricklisteAll = list.tricklisteAll;
+        SkateTrick[] beginnerTricks = list.beginnerTricks;
+        SkateTrick[] intermediateTricks = list.intermediateTricks;
 
-        List<SkateTrick> newSkateLine = generateSkateLine(tricklist1,6);
+        List<SkateTrick> newSkateLine = generateSkateLine(intermediateTricks,7);
         printArray(newSkateLine);
     }
     public static List<SkateTrick> generateSkateLine(SkateTrick[] tricklist, int trickcount) {
-        //Tricklisten erstellen, Sortierung von From: Normal/Fakie und To: NORMAL/FAKIE
+        //sorting of list in two different lists -> from: Normal or from: Fakie
         List<SkateTrick> tricksFromNormal = Arrays.stream(tricklist)
                 .filter(trick -> trick.from == Direction.REGULAR)
                 .toList();
@@ -32,14 +34,14 @@ public class Main {
             System.out.println("No elements found");
             return List.of();
         }
-        //ersten Trick aus Listen wählen, muss from: NORMAL erfüllen
+        //first trick is randomly chosen, trick from list tricksFromNormal
         Random random = new Random();
         SkateTrick firstSkateTrick = tricksFromNormal.get(random.nextInt(tricksFromNormal.size()));
         //ersten Trick zur finalen Liste (Skate-Line) zufügen
         List<SkateTrick> line = new ArrayList<>();
         line.add(firstSkateTrick);
 
-        //Skate-Line durch weitere Tricks ergänzen
+        //list line is filled with more randomly chosen tricks
         for (int i = 1; i < trickcount-1; i++) {
             if (line.get(i-1).to == Direction.REGULAR) {
                 SkateTrick nextSkateTrick = tricksFromNormal.get(random.nextInt(tricksFromNormal.size()));
@@ -49,7 +51,7 @@ public class Main {
                 line.add(nextSkateTrick);
             }
         }
-        //Tricklisten für letzten Trick erstellen, da letzter Trick to: REGULAR sein soll
+        //tricklists need to be modified for last trick last trick hat to be to: REGULAR
         List<SkateTrick> tricksFromNormalToNormal = tricksFromNormal.stream()
                 .filter(trick -> trick.from == Direction.REGULAR && trick.to == Direction.REGULAR)
                 .toList();
