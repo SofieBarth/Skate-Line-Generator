@@ -53,12 +53,13 @@ The program will:
 Example output:
 
 ```
-fsFiveO
-fsFiftyFifty
-fsFiveO
-bsFiftyFifty
 rocknRollBoardSlide
-rocknRoll
+rockToFakie
+fakieAxleStall
+fsFiftyFifty
+rockToFakie
+fakieAxleStall
+fsFiftyFifty
 
 ```
 
