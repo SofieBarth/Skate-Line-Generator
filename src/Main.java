@@ -40,7 +40,7 @@ public class Main {
         line.add(firstSkateTrick);
 
         //Skate-Line durch weitere Tricks ergänzen
-        for (int i = 1; i < trickcount; i++) {
+        for (int i = 1; i < trickcount-1; i++) {
             if (line.get(i-1).to == Direction.REGULAR) {
                 SkateTrick nextSkateTrick = tricksFromNormal.get(random.nextInt(tricksFromNormal.size()));
                 line.add(nextSkateTrick);
@@ -66,7 +66,7 @@ public class Main {
             System.out.println("No elements found");
             return List.of();
         }
-        if (line.get(trickcount-1).to == Direction.REGULAR) {
+        if (line.get(trickcount-2).to == Direction.REGULAR) {
             SkateTrick lastSkateTrick = tricksFromNormalToNormal.get(random.nextInt(tricksFromNormalToNormal.size()));
             line.add(lastSkateTrick);
         } else {
