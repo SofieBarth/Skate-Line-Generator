@@ -20,7 +20,7 @@ public class Tricklist {
     SkateTrick twoSeventyFeebletoFakie = new SkateTrick("twoSeventyFeebleToFakie", Direction.FAKIE, Direction.FAKIE, Level.ADVANCED, false);
     SkateTrick rocknRollBoardSlide = new SkateTrick("rocknRollBoardSlide", Direction.REGULAR, Direction.REGULAR, Level.INTERMEDIATE, false);
 
-    SkateTrick[] tricklisteAll = {rockToFakie, bsFeeble, halfCapRockToFakie, tailTap, axleStall, rocknRoll, bsFiftyFifty, fsFiftyFifty, fsSmithGrind, fsFiveO, boardSlide, fakieAxleStall, fakieSmithStall, fakieSmithGrind, twoSeventyFeeble, twoSeventyFeebletoFakie, rocknRollBoardSlide};
+    SkateTrick[] trickListAll = {rockToFakie, bsFeeble, halfCapRockToFakie, tailTap, axleStall, rocknRoll, bsFiftyFifty, fsFiftyFifty, fsSmithGrind, fsFiveO, boardSlide, fakieAxleStall, fakieSmithStall, fakieSmithGrind, twoSeventyFeeble, twoSeventyFeebletoFakie, rocknRollBoardSlide};
     SkateTrick[] beginnerTricks = {rockToFakie, bsFeeble, bsFiftyFifty, halfCapRockToFakie, axleStall, rocknRoll, fakieAxleStall, fakieSmithStall, fsSmithStall, tailTap};
     SkateTrick[] intermediateTricks = {fsFiftyFifty, bsFeebleToFakie, fsFeeble, fsSmithGrind, fsFiveO, boardSlide, twoSeventyFeeble,fakieSmithGrind, rocknRollBoardSlide};
 }

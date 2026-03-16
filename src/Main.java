@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -9,11 +10,16 @@ public class Main {
     public static void main(String[] args) {
 
         Tricklist list = new Tricklist();
-        SkateTrick[] tricklisteAll = list.tricklisteAll;
+        SkateTrick[] trickListAll = list.trickListAll;
         SkateTrick[] beginnerTricks = list.beginnerTricks;
         SkateTrick[] intermediateTricks = list.intermediateTricks;
 
-        List<SkateTrick> newSkateLine = generateSkateLine(intermediateTricks,7);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the number of tricks for the Skate-Line:");
+        int numberOfTricks = scanner.nextInt();
+        System.out.println("Your line with " + numberOfTricks + " tricks was generated as follows:");
+
+        List<SkateTrick> newSkateLine = generateSkateLine(beginnerTricks, numberOfTricks);
         printArray(newSkateLine);
     }
     public static List<SkateTrick> generateSkateLine(SkateTrick[] tricklist, int trickcount) {
