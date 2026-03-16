@@ -34,14 +34,14 @@ public class Main {
             System.out.println("No elements found");
             return List.of();
         }
-        //first trick is randomly chosen, trick from list tricksFromNormal
+        //first trick is randomly chosen, trick from list: tricksFromNormal
         Random random = new Random();
         SkateTrick firstSkateTrick = tricksFromNormal.get(random.nextInt(tricksFromNormal.size()));
-        //ersten Trick zur finalen Liste (Skate-Line) zufügen
+        //first trick added to list: line
         List<SkateTrick> line = new ArrayList<>();
         line.add(firstSkateTrick);
 
-        //list line is filled with more randomly chosen tricks
+        //list: line is filled with more randomly chosen tricks
         for (int i = 1; i < trickcount-1; i++) {
             if (line.get(i-1).to == Direction.REGULAR) {
                 SkateTrick nextSkateTrick = tricksFromNormal.get(random.nextInt(tricksFromNormal.size()));
@@ -51,7 +51,7 @@ public class Main {
                 line.add(nextSkateTrick);
             }
         }
-        //tricklists need to be modified for last trick last trick hat to be to: REGULAR
+        //tricklists need to be modified for last trick, last trick has to be to: REGULAR
         List<SkateTrick> tricksFromNormalToNormal = tricksFromNormal.stream()
                 .filter(trick -> trick.from == Direction.REGULAR && trick.to == Direction.REGULAR)
                 .toList();
