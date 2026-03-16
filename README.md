@@ -47,12 +47,16 @@ Use an IDE, open the project folder and run the project.
 The program will:
 
 1. Load a predefined trick list.
-2. Generate a random skate line with a specified number of tricks.
-3. Print the generated line to the console.
+2. Ask you to enter a number of tricks for the skate-line.
+3. Generate a random skate line with the specified number of tricks.
+4. Print the generated line to the console.
 
 Example output:
 
 ```
+Please enter the number of tricks for the Skate-Line:
+7
+Your line with 7 tricks was generated as follows:
 rocknRollBoardSlide
 rockToFakie
 fakieAxleStall
@@ -81,18 +85,3 @@ Each printed line represents a trick in the generated skate line.
 
 Additional lists can be created and used for the Line generation
 
-To generate a different number of tricks, change the value in:
-
-```java
-generateSkateLine(tricklist1, 6);
-```
-
-For example:
-
-```java
-generateSkateLine(tricklist1, 10);
-```
-
-This will generate a line with **10 tricks**.
-
----
