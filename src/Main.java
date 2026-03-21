@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -22,12 +21,11 @@ public class Main {
         List<SkateTrick> newSkateLine = generateSkateLine(beginnerTricks, numberOfTricks);
         printArray(newSkateLine);
     }
+
     public static List<SkateTrick> generateSkateLine(SkateTrick[] tricklist, int trickcount) {
         //sorting of list in two different lists -> from: Normal or from: Fakie
-
-        Tricklist list = new Tricklist();
-        List<SkateTrick> tricksFromRegular = list.filterTricklist(tricklist, Direction.REGULAR);
-        List<SkateTrick> tricksFromFakie = list.filterTricklist(tricklist, Direction.FAKIE);
+        List<SkateTrick> tricksFromRegular = Tricklist.filterTricklist(tricklist, Direction.REGULAR);
+        List<SkateTrick> tricksFromFakie = Tricklist.filterTricklist(tricklist, Direction.FAKIE);
 
         //first trick is randomly chosen, trick from list: tricksFromNormal
         Random random = new Random();
@@ -37,8 +35,8 @@ public class Main {
         line.add(firstSkateTrick);
 
         //list: line is filled with more randomly chosen tricks
-        for (int i = 1; i < trickcount-1; i++) {
-            if (line.get(i-1).to == Direction.REGULAR) {
+        for (int i = 1; i < trickcount - 1; i++) {
+            if (line.get(i - 1).to == Direction.REGULAR) {
                 SkateTrick nextSkateTrick = tricksFromRegular.get(random.nextInt(tricksFromRegular.size()));
                 line.add(nextSkateTrick);
             } else {
@@ -46,32 +44,23 @@ public class Main {
                 line.add(nextSkateTrick);
             }
         }
+
+        SkateTrick lastSkateTrick;
+        List<SkateTrick> listForLastTrick;
+
         //tricklists need to be modified for last trick, last trick has to be to: REGULAR
-        List<SkateTrick> tricksFromNormalToNormal = tricksFromRegular.stream()
-                .filter(trick -> trick.from == Direction.REGULAR && trick.to == Direction.REGULAR)
-                .toList();
-
-        if (tricksFromNormalToNormal.isEmpty()) {
-            System.out.println("No elements found");
-            return List.of();
-        }
-        List<SkateTrick> tricksFromFakieToNormal = tricksFromFakie.stream()
-                .filter(trick -> trick.from == Direction.FAKIE && trick.to == Direction.REGULAR)
-                .toList();
-
-        if (tricksFromFakieToNormal.isEmpty()) {
-            System.out.println("No elements found");
-            return List.of();
-        }
-        if (line.get(trickcount-2).to == Direction.REGULAR) {
-            SkateTrick lastSkateTrick = tricksFromNormalToNormal.get(random.nextInt(tricksFromNormalToNormal.size()));
-            line.add(lastSkateTrick);
+        if (line.get(trickcount - 2).to == Direction.REGULAR) {
+            listForLastTrick = Tricklist.filterTricksForLastTrick(tricksFromRegular, Direction.REGULAR);
         } else {
-            SkateTrick lastSkateTrick = tricksFromFakieToNormal.get(random.nextInt(tricksFromFakieToNormal.size()));
-            line.add(lastSkateTrick);
+            listForLastTrick = Tricklist.filterTricksForLastTrick(tricksFromFakie, Direction.FAKIE);
         }
+
+        lastSkateTrick = listForLastTrick.get(random.nextInt(listForLastTrick.size()));
+        line.add(lastSkateTrick);
+
         return line;
     }
+
     public static void printArray(List<SkateTrick> arr) {
         for (int i = 0; i < arr.size(); i++) {
             System.out.println(arr.get(i).name);

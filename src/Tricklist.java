@@ -25,31 +25,32 @@ public class Tricklist {
 
     SkateTrick[] trickListAll = {rockToFakie, bsFeeble, halfCapRockToFakie, tailTap, axleStall, rocknRoll, bsFiftyFifty, fsFiftyFifty, fsSmithGrind, fsFiveO, boardSlide, fakieAxleStall, fakieSmithStall, fakieSmithGrind, twoSeventyFeeble, twoSeventyFeebletoFakie, rocknRollBoardSlide};
     SkateTrick[] beginnerTricks = {rockToFakie, bsFeeble, bsFiftyFifty, halfCapRockToFakie, axleStall, rocknRoll, fakieAxleStall, fakieSmithStall, fsSmithStall, tailTap};
-    SkateTrick[] intermediateTricks = {fsFiftyFifty, bsFeebleToFakie, fsFeeble, fsSmithGrind, fsFiveO, boardSlide, twoSeventyFeeble,fakieSmithGrind, rocknRollBoardSlide};
+    SkateTrick[] intermediateTricks = {fsFiftyFifty, bsFeebleToFakie, fsFeeble, fsSmithGrind, fsFiveO, boardSlide, twoSeventyFeeble, fakieSmithGrind, rocknRollBoardSlide};
 
-    public List<SkateTrick> filterTricklist (SkateTrick[] tricklist, Direction from) {
+    public static List<SkateTrick> filterTricklist(SkateTrick[] tricklist, Direction from) {
         //sorting of list in two different lists -> from: Normal or from: Fakie
-        if (from == Direction.REGULAR) {
-            List<SkateTrick> tricksFromNormal = Arrays.stream(tricklist)
-                    .filter(trick -> trick.from == Direction.REGULAR)
-                    .toList();
 
-            if (tricksFromNormal.isEmpty()) {
-                System.out.println("No elements found");
-                return List.of();
-            }
-            return tricksFromNormal;
-        } else {
-            List<SkateTrick> tricksFromFakie = Arrays.stream(tricklist)
-                    .filter(trick -> trick.from == Direction.FAKIE)
-                    .toList();
+        List<SkateTrick> filteredTrickList = Arrays.stream(tricklist)
+                .filter(trick -> trick.from == from)
+                .toList();
 
-            if (tricksFromFakie.isEmpty()) {
-                System.out.println("No elements found");
-                return List.of();
-            }
-            return tricksFromFakie;
+        if (filteredTrickList.isEmpty()) {
+            System.out.println("No elements found");
+            return List.of();
         }
+        return filteredTrickList;
+    }
+
+    public static List<SkateTrick> filterTricksForLastTrick(List<SkateTrick> filteredTrickList, Direction from) {
+        List<SkateTrick> listForLastTrick = filteredTrickList.stream()
+                .filter(trick -> trick.from == from && trick.to == Direction.REGULAR)
+                .toList();
+
+        if (listForLastTrick.isEmpty()) {
+            System.out.println("No elements found");
+            return List.of();
+        }
+        return listForLastTrick;
     }
 }
 
