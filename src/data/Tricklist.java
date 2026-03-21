@@ -1,3 +1,9 @@
+package data;
+
+import model.Direction;
+import model.Level;
+import model.SkateTrick;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,9 +29,9 @@ public class Tricklist {
     SkateTrick twoSeventyFeebletoFakie = new SkateTrick("twoSeventyFeebleToFakie", Direction.FAKIE, Direction.FAKIE, Level.ADVANCED, false);
     SkateTrick rocknRollBoardSlide = new SkateTrick("rocknRollBoardSlide", Direction.REGULAR, Direction.REGULAR, Level.INTERMEDIATE, false);
 
-    SkateTrick[] trickListAll = {rockToFakie, bsFeeble, halfCapRockToFakie, tailTap, axleStall, rocknRoll, bsFiftyFifty, fsFiftyFifty, fsSmithGrind, fsFiveO, boardSlide, fakieAxleStall, fakieSmithStall, fakieSmithGrind, twoSeventyFeeble, twoSeventyFeebletoFakie, rocknRollBoardSlide};
-    SkateTrick[] beginnerTricks = {rockToFakie, bsFeeble, bsFiftyFifty, halfCapRockToFakie, axleStall, rocknRoll, fakieAxleStall, fakieSmithStall, fsSmithStall, tailTap};
-    SkateTrick[] intermediateTricks = {fsFiftyFifty, bsFeebleToFakie, fsFeeble, fsSmithGrind, fsFiveO, boardSlide, twoSeventyFeeble, fakieSmithGrind, rocknRollBoardSlide};
+    public SkateTrick[] trickListAll = {rockToFakie, bsFeeble, halfCapRockToFakie, tailTap, axleStall, rocknRoll, bsFiftyFifty, fsFiftyFifty, fsSmithGrind, fsFiveO, boardSlide, fakieAxleStall, fakieSmithStall, fakieSmithGrind, twoSeventyFeeble, twoSeventyFeebletoFakie, rocknRollBoardSlide};
+    public SkateTrick[] beginnerTricks = {rockToFakie, bsFeeble, bsFiftyFifty, halfCapRockToFakie, axleStall, rocknRoll, fakieAxleStall, fakieSmithStall, fsSmithStall, tailTap};
+    public SkateTrick[] intermediateTricks = {fsFiftyFifty, bsFeebleToFakie, fsFeeble, fsSmithGrind, fsFiveO, boardSlide, twoSeventyFeeble, fakieSmithGrind, rocknRollBoardSlide};
 
     public static List<SkateTrick> filterTricklist(SkateTrick[] tricklist, Direction from) {
         //sorting of list in two different lists -> from: Normal or from: Fakie
