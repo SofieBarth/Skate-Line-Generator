@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.List;
+
 public class Tricklist {
     SkateTrick rockToFakie = new SkateTrick("rockToFakie", Direction.REGULAR, Direction.FAKIE, Level.BASIC, false);
     SkateTrick bsFeebleToFakie = new SkateTrick("bsFeebleToFakie", Direction.REGULAR, Direction.FAKIE, Level.INTERMEDIATE, false);
@@ -23,5 +26,31 @@ public class Tricklist {
     SkateTrick[] trickListAll = {rockToFakie, bsFeeble, halfCapRockToFakie, tailTap, axleStall, rocknRoll, bsFiftyFifty, fsFiftyFifty, fsSmithGrind, fsFiveO, boardSlide, fakieAxleStall, fakieSmithStall, fakieSmithGrind, twoSeventyFeeble, twoSeventyFeebletoFakie, rocknRollBoardSlide};
     SkateTrick[] beginnerTricks = {rockToFakie, bsFeeble, bsFiftyFifty, halfCapRockToFakie, axleStall, rocknRoll, fakieAxleStall, fakieSmithStall, fsSmithStall, tailTap};
     SkateTrick[] intermediateTricks = {fsFiftyFifty, bsFeebleToFakie, fsFeeble, fsSmithGrind, fsFiveO, boardSlide, twoSeventyFeeble,fakieSmithGrind, rocknRollBoardSlide};
+
+    public List<SkateTrick> filterTricklist (SkateTrick[] tricklist, Direction from) {
+        //sorting of list in two different lists -> from: Normal or from: Fakie
+        if (from == Direction.REGULAR) {
+            List<SkateTrick> tricksFromNormal = Arrays.stream(tricklist)
+                    .filter(trick -> trick.from == Direction.REGULAR)
+                    .toList();
+
+            if (tricksFromNormal.isEmpty()) {
+                System.out.println("No elements found");
+                return List.of();
+            }
+            return tricksFromNormal;
+        } else {
+            List<SkateTrick> tricksFromFakie = Arrays.stream(tricklist)
+                    .filter(trick -> trick.from == Direction.FAKIE)
+                    .toList();
+
+            if (tricksFromFakie.isEmpty()) {
+                System.out.println("No elements found");
+                return List.of();
+            }
+            return tricksFromFakie;
+        }
+    }
 }
+
 
