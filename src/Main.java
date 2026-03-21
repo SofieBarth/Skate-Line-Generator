@@ -24,25 +24,14 @@ public class Main {
     }
     public static List<SkateTrick> generateSkateLine(SkateTrick[] tricklist, int trickcount) {
         //sorting of list in two different lists -> from: Normal or from: Fakie
-        List<SkateTrick> tricksFromNormal = Arrays.stream(tricklist)
-                .filter(trick -> trick.from == Direction.REGULAR)
-                .toList();
 
-        if (tricksFromNormal.isEmpty()) {
-            System.out.println("No elements found");
-            return List.of();
-        }
-        List<SkateTrick> tricksFromFakie = Arrays.stream(tricklist)
-                .filter(trick -> trick.from == Direction.FAKIE)
-                .toList();
+        Tricklist list = new Tricklist();
+        List<SkateTrick> tricksFromRegular = list.filterTricklist(tricklist, Direction.REGULAR);
+        List<SkateTrick> tricksFromFakie = list.filterTricklist(tricklist, Direction.FAKIE);
 
-        if (tricksFromFakie.isEmpty()) {
-            System.out.println("No elements found");
-            return List.of();
-        }
         //first trick is randomly chosen, trick from list: tricksFromNormal
         Random random = new Random();
-        SkateTrick firstSkateTrick = tricksFromNormal.get(random.nextInt(tricksFromNormal.size()));
+        SkateTrick firstSkateTrick = tricksFromRegular.get(random.nextInt(tricksFromRegular.size()));
         //first trick added to list: line
         List<SkateTrick> line = new ArrayList<>();
         line.add(firstSkateTrick);
@@ -50,7 +39,7 @@ public class Main {
         //list: line is filled with more randomly chosen tricks
         for (int i = 1; i < trickcount-1; i++) {
             if (line.get(i-1).to == Direction.REGULAR) {
-                SkateTrick nextSkateTrick = tricksFromNormal.get(random.nextInt(tricksFromNormal.size()));
+                SkateTrick nextSkateTrick = tricksFromRegular.get(random.nextInt(tricksFromRegular.size()));
                 line.add(nextSkateTrick);
             } else {
                 SkateTrick nextSkateTrick = tricksFromFakie.get(random.nextInt(tricksFromFakie.size()));
@@ -58,7 +47,7 @@ public class Main {
             }
         }
         //tricklists need to be modified for last trick, last trick has to be to: REGULAR
-        List<SkateTrick> tricksFromNormalToNormal = tricksFromNormal.stream()
+        List<SkateTrick> tricksFromNormalToNormal = tricksFromRegular.stream()
                 .filter(trick -> trick.from == Direction.REGULAR && trick.to == Direction.REGULAR)
                 .toList();
 
