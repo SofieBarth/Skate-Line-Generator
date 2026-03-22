@@ -19,8 +19,25 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the number of tricks for the Skate-Line:");
-        int numberOfTricks = scanner.nextInt();
+        int numberOfTricks = -1;
+        boolean valid = false;
+
+        while (!valid) {
+            if (scanner.hasNextInt()) {
+                numberOfTricks = scanner.nextInt();
+                if (numberOfTricks > 0) {
+                    valid = true;
+                } else {
+                    System.out.println("Input number is invalid, number must be > 0.");
+                }
+            } else {
+                System.out.println("Input invalid, must be a number > 0");
+                scanner.next();
+            }
+        }
+
         System.out.println("Your line with " + numberOfTricks + " tricks was generated as follows:");
+        scanner.close();
 
         List<SkateTrick> newSkateLine = generateSkateLine(trickListAll, numberOfTricks);
         printArray(newSkateLine);
