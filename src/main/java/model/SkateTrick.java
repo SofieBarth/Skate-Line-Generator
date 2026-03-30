@@ -14,6 +14,11 @@ public class SkateTrick {
         this.level = level;
         this.doSwitch = doSwitch;
     }
+
+    public String getName() {
+        this.name = name;
+        return name;
+    }
 }
 
 

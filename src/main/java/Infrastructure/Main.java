@@ -1,3 +1,6 @@
+package Infrastructure;
+
+import UI.SkatelineApp;
 import data.Tricklist;
 import model.SkateTrick;
 
@@ -12,6 +15,13 @@ import static logic.LineGeneration.printArray;
 public class Main {
     public static void main(String[] args) {
 
+        SkatelineApp.main(args);
+
+        //lineGenerationTerminal();
+
+    }
+
+    public static void lineGenerationTerminal() {
         Tricklist list = new Tricklist();
         SkateTrick[] trickListAll = list.trickListAll;
         SkateTrick[] beginnerTricks = list.beginnerTricks;
