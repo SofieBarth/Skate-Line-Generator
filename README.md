@@ -42,32 +42,30 @@ Use an IDE, open the project folder and run the project.
 
 ---
 
-## Usage
+## Usage and Feature Overview
 
-The program will:
+1. **Open the Generator UI**  
+   To access the interface start the program.
 
-1. Load a predefined trick list.
-2. Ask you to enter a number of tricks for the skate-line.
-3. Generate a random skate line with the specified number of tricks.
-4. Print the generated line to the console.
+2. **Select Trick Source**  
+   Choose between:
+   - a predefined trick list  
+   - a custom-built trick list
 
-Example output:
+3. **Predefined List Option**  
+   Select the list for your Skate-line.
 
-```
-Please enter the number of tricks for the Skate-Line:
-7
-Your line with 7 tricks was generated as follows:
-rocknRollBoardSlide
-rockToFakie
-fakieAxleStall
-fsFiftyFifty
-rockToFakie
-fakieAxleStall
-fsFiftyFifty
+4. **Custom List Option**  
+   Browse all available tricks and select your own set.
 
-```
+5. **Define Line Length**  
+   Enter the number of tricks to include in the skate line.
 
-Each printed line represents a trick in the generated skate line.
+6. **Generate Line**  
+   The system creates a randomized sequence based on your selection.
+
+7. **Display Result**  
+   The generated skate line is presented in the UI.
 
 ---
 
@@ -77,11 +75,6 @@ Each printed line represents a trick in the generated skate line.
 2. The first trick is randomly selected from tricks that start in `REGULAR`.
 3. Additional tricks are chosen based on the ending direction of the previous trick.
 4. The final trick is selected from tricks that end in `REGULAR`.
-5. The completed line is printed to the console.
+5. The completed line is given in the UI
 
----
-
-## Example Modification
-
-Additional lists can be created and used for the Line generation
 
