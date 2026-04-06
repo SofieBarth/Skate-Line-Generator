@@ -49,6 +49,11 @@ public class LineGeneration {
         return line;
     }
 
+    public static List<SkateTrick> addTricktoNewList(List<SkateTrick> newList, SkateTrick trick) {
+        newList.add(trick);
+        return newList;
+    }
+
     public static void printArray(List<SkateTrick> arr) {
         for (int i = 0; i < arr.size(); i++) {
             System.out.println(arr.get(i).name);
