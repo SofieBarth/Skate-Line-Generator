@@ -35,7 +35,7 @@ public class SkatelineApp extends Application {
         // first button to start into line generation
         Button startBtn = new Button("Skateline generieren");
         startBtn.setPrefSize(400, 100);
-        startBtn.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        startBtn.setStyle("-fx-font-size: 26px; -fx-font-weight: bold;");
 
         // choose tricklist for line generation
         startBtn.setOnAction(e -> {
@@ -133,7 +133,7 @@ public class SkatelineApp extends Application {
         Button nextStepBtn = new Button("Go to Next Step");
         StackPane.setAlignment(nextStepBtn, Pos.BOTTOM_RIGHT);
         StackPane.setMargin(nextStepBtn, new Insets(20)); //distance to edge
-        nextStepBtn.setPrefSize(250, 80);
+        nextStepBtn.setPrefSize(270, 80);
         nextStepBtn.setStyle(
                 "-fx-font-size: 22px; " +
                         "-fx-font-weight: bold; " +
@@ -143,11 +143,25 @@ public class SkatelineApp extends Application {
                         "-fx-background-radius: 5px;");
         nextStepBtn.setDisable(true);
 
+        Button infoBtn = new Button("Choose at least one trick from:\n" +
+                "• Regular to Regular\n" +
+                "• Fakie to Regular");
+        StackPane.setAlignment(infoBtn, Pos.CENTER_RIGHT);
+        infoBtn.setTranslateY(190);
+        StackPane.setMargin(infoBtn, new Insets(20)); //distance to edge
+        infoBtn.setPrefSize(270, 190);
+        infoBtn.setWrapText(true);
+        infoBtn.setStyle(
+                "-fx-font-size: 16px; " +
+                        "-fx-font-weight: bold; " +
+                        "-fx-border-width: 2px; " +
+                        "-fx-border-radius: 5px; " +
+                        "-fx-background-radius: 5px;");
+        infoBtn.setDisable(true);
+
         List<SkateTrick> newList = new ArrayList<>();
 
         //declaration of flags, so that there are enough compatible tricks to generate a Skate-Line
-        AtomicBoolean fromRegular = new AtomicBoolean(false);
-        AtomicBoolean fromFakie = new AtomicBoolean(false);
         AtomicBoolean fromRegularToRegular = new AtomicBoolean(false);
         AtomicBoolean fromFakieToRegular = new AtomicBoolean(false);
 
@@ -178,20 +192,14 @@ public class SkatelineApp extends Application {
 
                 // check which flag the trick sets on true
                 if (nextStepBtn.isDisable()) {
-                    if (trick.from == Direction.REGULAR) {
-                        fromRegular.set(true);
-                        if (trick.to == Direction.REGULAR) {
-                            fromRegularToRegular.set(true);
-                        }
-                    } else {
-                        fromFakie.set(true);
-                        if (trick.to == Direction.REGULAR) {
-                            fromFakieToRegular.set(true);
-                        }
+                    if (trick.from == Direction.REGULAR && trick.to == Direction.REGULAR) {
+                        fromRegularToRegular.set(true);
+                    } else if (trick.from == Direction.FAKIE && trick.to == Direction.REGULAR) {
+                        fromFakieToRegular.set(true);
                     }
                 }
                 // check if all flags are set on true, so the nextStepButton is not disabled anymore
-                if (fromRegular.get() && fromFakie.get() && fromRegularToRegular.get() && fromFakieToRegular.get()) {
+                if (fromRegularToRegular.get() && fromFakieToRegular.get()) {
                     nextStepBtn.setDisable(false);
                 }
             });
@@ -209,7 +217,7 @@ public class SkatelineApp extends Application {
         // new layout
         root.getChildren().setAll(scrollPane);
 
-        root.getChildren().add(nextStepBtn);
+        root.getChildren().addAll(infoBtn, nextStepBtn);
 
         nextStepBtn.setOnAction(g -> {
             SkateTrick[] newTrickArray = newList.toArray(SkateTrick[]::new);

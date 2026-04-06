@@ -16,11 +16,9 @@ public class Main {
     public static void main(String[] args) {
 
         SkatelineApp.main(args);
-
-        //lineGenerationTerminal();
-
     }
 
+    //lineGenerationTerminal();
     public static void lineGenerationTerminal() {
         Tricklist list = new Tricklist();
         SkateTrick[] trickListAll = list.trickListAll;
