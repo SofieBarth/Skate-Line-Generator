@@ -33,7 +33,7 @@ public class SkatelineApp extends Application {
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
 
         // first button to start into line generation
-        Button startBtn = new Button("Skateline generieren");
+        Button startBtn = new Button("Generate Skate-Line");
         startBtn.setPrefSize(400, 100);
         startBtn.setStyle("-fx-font-size: 26px; -fx-font-weight: bold;");
 
@@ -43,11 +43,11 @@ public class SkatelineApp extends Application {
             VBox layout = new VBox(15);
             layout.setAlignment(Pos.CENTER);
 
-            Button existinglistsBtn = new Button("Choose existing Trick-List");
-            existinglistsBtn.setPrefSize(400, 80);
-            existinglistsBtn.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
+            Button existingListsBtn = new Button("Choose existing Trick-List");
+            existingListsBtn.setPrefSize(400, 80);
+            existingListsBtn.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
 
-            existinglistsBtn.setOnAction(f -> {
+            existingListsBtn.setOnAction(f -> {
                 useExistingList();
             });
 
@@ -62,7 +62,7 @@ public class SkatelineApp extends Application {
                 createNewList(trickListAll);
             });
 
-            layout.getChildren().addAll(existinglistsBtn, createNewListBtn);
+            layout.getChildren().addAll(existingListsBtn, createNewListBtn);
             root.getChildren().setAll(layout);
         });
 
@@ -106,9 +106,9 @@ public class SkatelineApp extends Application {
 
         beginnerTricksBtn.setOnAction(g -> {
             Tricklist list = new Tricklist();
-            SkateTrick[] tricklist = list.beginnerTricks;
+            SkateTrick[] trickList = list.beginnerTricks;
 
-            makeSkateLine(tricklist);
+            makeSkateLine(trickList);
         });
         Button intermediateTricksBtn = new Button("intermediate tricks");
         intermediateTricksBtn.setPrefSize(400, 80);
@@ -289,7 +289,7 @@ public class SkatelineApp extends Application {
 
         // tricks added to boxes
         for (SkateTrick trick : result) {
-            Label trickBox = new Label(trick.getName());
+            Label trickBox = new Label(trick.name);
 
             // Styling for boxes
             trickBox.setStyle(
