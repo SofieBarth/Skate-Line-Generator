@@ -167,7 +167,7 @@ public class SkatelineApp extends Application {
 
         // tricks added to boxes
         for (SkateTrick trick : allTricks) {
-            Button trickBox = new Button(trick.getName());
+            Button trickBox = new Button(trick.name);
 
             // Styling for boxes
             trickBox.setStyle(
